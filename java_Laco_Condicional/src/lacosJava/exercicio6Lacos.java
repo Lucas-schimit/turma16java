@@ -13,8 +13,8 @@ public class exercicio6Lacos {
 		 * */
 		Scanner ler = new Scanner(System.in);
 		
-		int numeros = 0, somaNumeros = 0, cont =-1;
-	
+		double numeros = 0.00, somaNumeros = 0.00, merdiaCalculo =0.00;
+		int cont =-1; 
 		
 		do {
 			System.out.println("Digite uma tecla: ");
@@ -27,7 +27,16 @@ public class exercicio6Lacos {
 			
 		}while(numeros != 0);
 		
-		System.out.printf("A media múltipla de 3 é: %d",(somaNumeros/cont));
+		merdiaCalculo = somaNumeros/cont;
+		
+
+
+			System.out.printf("A media múltipla de 3 é: %.2f",merdiaCalculo);
+
+				
+
+		
+		
 
 	}
 
