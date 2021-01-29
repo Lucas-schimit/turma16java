@@ -127,7 +127,7 @@ VOLTA PARA O MENU INICIAL
 			System.out.printf("Seu saldo é: %.2f",saldoTotal);
 		}
 		
-		}while(continuacao == 'S' && conta<10 ||movimentacao == 's' && conta<10);
+		}while(continuacao == 'S' && conta<10 ||movimentacao == 's' && conta<10 || true);
 		
 		if(conta==9) {
 			System.out.println("\n Você ecedeu o numero de consulta!!");
