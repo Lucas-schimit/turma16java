@@ -91,7 +91,7 @@ VOLTA PARA O MENU INICIAL
 			saldoTotal += + saldo;	
 		}
 			
-		}else if(saldoTotal<0){
+		}else if(saldoTotal<0 || saldoTotal<0 && conta==0 && movimentacao == 'D'){
 			
 			System.out.printf("Não pode fazer movimentação com saldo negativo");		
 			break;
@@ -99,7 +99,7 @@ VOLTA PARA O MENU INICIAL
 		}
 		
 		System.out.println("\n Descrição: ");
-		descricao = ler.nextLine();
+		descricao = ler.next();
 		
 		System.out.printf("\n CONTA POUPANÇA - CORREÇÃO MONETÁRIA S/N: ");
 		monetaria = ler.next().charAt(0);
@@ -128,6 +128,10 @@ VOLTA PARA O MENU INICIAL
 		}
 		
 		}while(continuacao == 'S' && conta<10 ||movimentacao == 's' && conta<10);
+		
+		if(conta==9) {
+			System.out.println("\n Você ecedeu o numero de consulta!!");
+		}
 			
 		
 		System.out.printf("\nFim da Consulta!!!");
