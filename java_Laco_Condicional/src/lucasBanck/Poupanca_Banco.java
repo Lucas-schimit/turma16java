@@ -5,6 +5,14 @@ import java.util.Scanner;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAccessor;
 
 public class Poupanca_Banco {
 
@@ -14,6 +22,9 @@ public class Poupanca_Banco {
 	public static void Poupanca_Banco_Fim_Semana() throws ParseException {
 
 		DateFormat arrumaData = new SimpleDateFormat("dd/MM/yyyy");
+		DateTimeFormatter formartar = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDateTime data1;
+		LocalDateTime dataAtual;
 		Scanner ler = new Scanner(System.in);
 		String dataRecebida;
 		Date data;
@@ -21,7 +32,7 @@ public class Poupanca_Banco {
 		double saldo[] = new double[10];
 		char opcaoDC;
 		double credito = 0.00, debito = 0.00;
-		char opcaoSN;
+		char opcaoSN =0;
 		char correcaoMonetaria;
 		
 		/*DESAFIO DA CONTAS GRUPOS DE 4 A 5 ALUNOS CONTAS POSSÍVEIS 
@@ -89,15 +100,47 @@ public class Poupanca_Banco {
 				}				
 		}
 		
-		System.out.println("Deseja fazer a correção hoje sim ou não? ");
-		correcaoMonetaria = ler.nextLine().toUpperCase().charAt(0);
-
+		
 		System.out.printf("Innforme a data do seu nascimento em dd/MM/yyyy\n");
 		dataRecebida = ler.nextLine();
-		data = arrumaData.parse(dataRecebida);
-		System.out.println(data);	
+		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataRecebida);
 		
+		data1 = convertToLocalDateTimeViaInstant(data2);
 		
+		dataAtual = LocalDateTime.now();
+		
+		for(int x = 0; x<10;x++) {
+		System.out.println("Deseja fazer a correção hoje sim ou não? S/N");
+		correcaoMonetaria = ler.nextLine().toUpperCase().charAt(0);
+		if (opcaoSN == 'S') 
+		{	
+			if(data1==dataAtual) {
+				
+				System.out.println("Parabés seu aniversário ganha mais 0.05%");
+				saldo[x]+=(saldo[x] * 0.001);
+			} else {
+			saldo[x] += (saldo[x] * 0.0005);
+			
+		} 
+		}	else if(opcaoSN == 'N') {
+			break;
+		}
+		}
+		
+		ler.nextLine();
+
+		System.out.println("Segue abaixo o extrato de movimentação: ");
+		
+		for(int y=0;y<10;y++)
+		{
+			if(descricaoD[y] != null) {
+				
+				System.out.printf("Você movimentou %.2f com a descricao %S \n", saldo[y],descricaoD[y]);
+				
+			}
+		}
+
+			System.out.println("Obrigado Por utilizar o serviço de poupança");	
 		
 	}
 	
@@ -109,6 +152,9 @@ public class Poupanca_Banco {
 		}
 		System.out.println();
 	}
-
-
+	public static LocalDateTime convertToLocalDateTimeViaInstant(Date dateToConvert) {
+	    return dateToConvert.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDateTime();
+	}	
 }
