@@ -28,8 +28,8 @@ public class Poupanca_Banco {
 		Scanner ler = new Scanner(System.in);
 		String dataRecebida;
 		Date data;
-		String descricaoD[] = new String[10], descricaoC[] = new String[10];
-		double saldo[] = new double[10];
+		String descricao[] = new String[10];
+		double saldo[] = new double[10], saldoTotal = 0.00;
 		char opcaoDC;
 		double credito = 0.00, debito = 0.00;
 		char opcaoSN =0;
@@ -55,20 +55,20 @@ public class Poupanca_Banco {
 					
 					System.out.print("\nDigite o valor para débito :");
 					debito = ler.nextDouble();
-					if(saldo[i]>0) {
+					if(saldoTotal>0) {
 						
-						while(saldo[i]<debito) {
+						while(saldoTotal<debito) {
 							
 							System.out.printf("Saldo indisponivel, atual %.2f, tente de novo!!!\n",saldo);
 							System.out.print("Digite o valor para débito :");
 							debito = ler.nextDouble();		
 						}
-					ler.nextLine();
-					System.out.print("Informe a descrição do débito :");
-					descricaoD[i] = ler.nextLine();
-					saldo[i]+=-debito;
-					System.out.printf("Seu saldo atual é R$ %.2f \n", saldo[i]);	
-					}else if(saldo[i]==0) {
+					System.out.print("Informe a descrição do débito :\n");
+					descricao[i] = ler.nextLine();
+					saldoTotal = saldoTotal-debito;
+					saldo[i] = -debito;
+					System.out.printf("Seu saldo atual é R$ %.2f \n", saldoTotal);	
+					}else if(saldoTotal==0) {
 						System.out.println("Você está sem saldo no momento, faça um crédito primeiro!!!");
 					}		
 				} else if(opcaoDC =='C') {
@@ -83,9 +83,10 @@ public class Poupanca_Banco {
 					 	}
 				  ler.nextLine();
 				  System.out.print("Digite a descrição do crédito: ");
-				  descricaoC[i] = ler.nextLine();
-				  saldo[i]+=+credito;
-				  System.out.printf("Seu saldo atual é R$ %.2f \n", saldo[i]);
+				  descricao[i] = ler.nextLine();
+				  saldoTotal+=+credito;
+				  saldo[i] = credito;
+				  System.out.printf("Seu saldo atual é R$ %.2f \n", saldoTotal);
 				}else {
 					
 					System.out.println("Você não escolheu Debito ou Crédito!!!");
@@ -104,42 +105,43 @@ public class Poupanca_Banco {
 		System.out.printf("Innforme a data do seu nascimento em dd/MM/yyyy\n");
 		dataRecebida = ler.nextLine();
 		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataRecebida);
-		
+	
 		data1 = convertToLocalDateTimeViaInstant(data2);
 		
 		dataAtual = LocalDateTime.now();
 		
-		for(int x = 0; x<10;x++) {
+		
 		System.out.println("Deseja fazer a correção hoje sim ou não? S/N");
 		correcaoMonetaria = ler.nextLine().toUpperCase().charAt(0);
-		if (opcaoSN == 'S') 
+		if (correcaoMonetaria == 'S') 
 		{	
 			if(data1==dataAtual) {
 				
 				System.out.println("Parabés seu aniversário ganha mais 0.05%");
-				saldo[x]+=(saldo[x] * 0.001);
+				saldoTotal= saldoTotal+(saldoTotal * 0.001);
+				
+				
 			} else {
-			saldo[x] += (saldo[x] * 0.0005);
+				
+				saldoTotal += (saldoTotal * 0.0005);
 			
-		} 
-		}	else if(opcaoSN == 'N') {
-			break;
-		}
-		}
+			}
+		}	
 		
-		ler.nextLine();
 
-		System.out.println("Segue abaixo o extrato de movimentação: ");
+
+		System.out.println("Segue abaixo o extrato da movimentação: ");
 		
 		for(int y=0;y<10;y++)
 		{
-			if(descricaoD[y] != null) {
+			if(descricao[y]!= null)
 				
-				System.out.printf("Você movimentou %.2f com a descricao %S \n", saldo[y],descricaoD[y]);
-				
-			}
+				System.out.printf("Você movimentou %.2f com a descricao %S \n", saldo[y],descricao[y]);
+               
 		}
 
+		
+		    System.out.printf("O valor total é de %f\n: ",saldoTotal);
 			System.out.println("Obrigado Por utilizar o serviço de poupança");	
 		
 	}
