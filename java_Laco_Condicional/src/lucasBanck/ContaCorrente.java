@@ -41,8 +41,8 @@ public class ContaCorrente {
 		
 		dataAtual = LocalDateTime.now();
   
-    System.out.println(data1);
-    System.out.println(dataAtual);
+
+   
 	}
 
 	

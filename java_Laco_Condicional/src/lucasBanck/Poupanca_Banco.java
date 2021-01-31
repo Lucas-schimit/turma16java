@@ -1,5 +1,6 @@
 package lucasBanck;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import java.text.DateFormat;
@@ -23,8 +24,8 @@ public class Poupanca_Banco {
 
 		DateFormat arrumaData = new SimpleDateFormat("dd/MM/yyyy");
 		DateTimeFormatter formartar = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		Calendar c1 = Calendar.getInstance();
 		LocalDateTime data1;
-		LocalDateTime dataAtual;
 		Scanner ler = new Scanner(System.in);
 		String dataRecebida;
 		Date data;
@@ -50,7 +51,7 @@ public class Poupanca_Banco {
 		for(int i=0;i<10;i++) {
 			
 			System.out.printf("Lançamento %d : [D-débito/C-crédito] :",i);
-			opcaoDC = ler.nextLine().charAt(0);
+			opcaoDC = ler.nextLine().toUpperCase().charAt(0);
 				if(opcaoDC == 'D') {
 					
 					System.out.print("\nDigite o valor para débito :");
@@ -63,13 +64,16 @@ public class Poupanca_Banco {
 							System.out.print("Digite o valor para débito :");
 							debito = ler.nextDouble();		
 						}
+					ler.nextLine();
 					System.out.print("Informe a descrição do débito :\n");
 					descricao[i] = ler.nextLine();
 					saldoTotal = saldoTotal-debito;
 					saldo[i] = -debito;
 					System.out.printf("Seu saldo atual é R$ %.2f \n", saldoTotal);	
 					}else if(saldoTotal==0) {
-						System.out.println("Você está sem saldo no momento, faça um crédito primeiro!!!");
+						System.out.println("Você está sem saldo no momento, faça um crédito primeiro!!!\n");
+						Poupanca_Banco.Poupanca_Banco_Fim_Semana();
+						
 					}		
 				} else if(opcaoDC =='C') {
 					
@@ -102,22 +106,26 @@ public class Poupanca_Banco {
 		}
 		
 		
+		
 		System.out.printf("Innforme a data do seu nascimento em dd/MM/yyyy\n");
 		dataRecebida = ler.nextLine();
 		Date data2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataRecebida);
-	
-		data1 = convertToLocalDateTimeViaInstant(data2);
+		Date dataAtual =  c1.getTime();
+		String dataConfiguradaComputador = arrumaData.format(dataAtual);
+		String dataConfiguradaInformada = arrumaData.format(data2);
 		
-		dataAtual = LocalDateTime.now();
 		
+		//System.out.println(dataConfiguradaComputador);
+		
+		//System.out.println(dataConfiguradaInformada);
 		
 		System.out.println("Deseja fazer a correção hoje sim ou não? S/N");
 		correcaoMonetaria = ler.nextLine().toUpperCase().charAt(0);
 		if (correcaoMonetaria == 'S') 
 		{	
-			if(data1==dataAtual) {
+			if(dataConfiguradaComputador.equals(dataConfiguradaInformada)) {
 				
-				System.out.println("Parabés seu aniversário ganha mais 0.05%");
+				System.out.println("Parabés seu aniversário ganha mais 0.05% \n");
 				saldoTotal= saldoTotal+(saldoTotal * 0.001);
 				
 				
@@ -126,10 +134,11 @@ public class Poupanca_Banco {
 				saldoTotal += (saldoTotal * 0.0005);
 			
 			}
-		}	
-		
-
-
+		} else { 
+			
+			System.out.println(" Não foi apicado correção monetaria !!");
+		}
+	
 		System.out.println("Segue abaixo o extrato da movimentação: ");
 		
 		for(int y=0;y<10;y++)
@@ -141,8 +150,9 @@ public class Poupanca_Banco {
 		}
 
 		
-		    System.out.printf("O valor total é de %f\n: ",saldoTotal);
-			System.out.println("Obrigado Por utilizar o serviço de poupança");	
+		    System.out.printf("O valor total é de: %.2f\n ",saldoTotal);
+			System.out.println("Obrigado Por utilizar o serviço de poupança");
+			linha(40);
 		
 	}
 	
