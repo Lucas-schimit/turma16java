@@ -115,10 +115,6 @@ public class Poupanca_Banco {
 		String dataConfiguradaInformada = arrumaData.format(data2);
 		
 		
-		//System.out.println(dataConfiguradaComputador);
-		
-		//System.out.println(dataConfiguradaInformada);
-		
 		System.out.println("Deseja fazer a correção hoje sim ou não? S/N");
 		correcaoMonetaria = ler.nextLine().toUpperCase().charAt(0);
 		if (correcaoMonetaria == 'S') 
