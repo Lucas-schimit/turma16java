@@ -1,19 +1,21 @@
 package Ecommerce;
 
+import java.util.Scanner; 
+
 public class PrimeiraTelaEcommerce {
 
 	public static void main(String[] args) {
 		
+		Escricao test = new Escricao();
+		
+		
+		
+		
+		test.Genero();
+		
+		
 	}
 	
 	
-	public static void Genero() {
-		
-		String Nome; 
-		char sexo;
-		
-		System.out.println("Por favor informe");
-		
-	}
 }
 

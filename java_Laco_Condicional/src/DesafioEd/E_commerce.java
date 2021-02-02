@@ -15,7 +15,8 @@ public class E_commerce {
 		String nomedoUsuario = " ", sexo = " ";
 		char sexodoUsuario;
 		char opcao1 = 'S';
-		char opcaoCarrinho ='S';
+		char opcaoCarrinho ='N';
+		char opcaoFormaDePagamento = 'S';
 
 		System.out.println(
 				"**************************************************************************************************************************************************");
@@ -130,7 +131,7 @@ public class E_commerce {
 				leia.nextLine();
 			}
 			System.out.println("Deseja ver seu carrinho? [S/N]");
-			opcao1 = leia.nextLine().toUpperCase().charAt(0);
+			opcaoCarrinho = leia.nextLine().toUpperCase().charAt(0);
 			if (opcaoCarrinho == 'S') {
 				System.out.println("Os itens selecionados foram :");
 				for (int i = 0; i < 10; i++) {
@@ -144,22 +145,22 @@ public class E_commerce {
 			System.out.println("Qual a forma de pagamento desejada?" + "\n1 - A vista (10% de desconto)"
 					+ "\n2 - Cartão de crédito (1x)" + "\n3 - Cartão de crédito (2x com 10% de juros) "
 					+ "\n4 - Cartão de crédito (3x com 15% de juros) ");
-			opcao1 = leia.nextLine().toUpperCase().charAt(0);
-			while (opcao1 < 0 && opcao1 > 4) {
+			opcaoFormaDePagamento = leia.nextLine().toUpperCase().charAt(0);
+			while (opcaoFormaDePagamento < 0 && opcaoFormaDePagamento > 4) {
 				System.out.println("Digite uma opção de pagamento válida: ");
-				opcao1 = leia.nextLine().toUpperCase().charAt(0);
+				opcaoFormaDePagamento = leia.nextLine().toUpperCase().charAt(0);
 			}
 			imposto = somaTotal * 0.09;
-			if (opcao1 == '1') {
+			if (opcaoFormaDePagamento == '1') {
 				somaTotal = somaTotal * 0.9;
 				System.out.println("O valor da sua compra foi de R$ " + (somaTotal + imposto));
-			} else if (opcao1 == '2') {
+			} else if (opcaoFormaDePagamento == '2') {
 				System.out.println("O valor da sua compra foi de R$ " + (somaTotal + imposto));
-			} else if (opcao1 == '3') {
+			} else if (opcaoFormaDePagamento == '3') {
 				somaTotal = somaTotal * 1.1;
 				System.out.println("O valor da sua compra foi de R$ " + (somaTotal + imposto) + ", com parcelas de R$ "
 						+ (somaTotal + imposto) / 2);
-			} else if (opcao1 == '4') {
+			} else if (opcaoFormaDePagamento == '4') {
 				somaTotal = somaTotal * 1.15;
 				System.out.println("O valor da sua compra foi de R$ " + (somaTotal + imposto) + ", com parcelas de R$ "
 						+ (somaTotal + imposto) / 3);
@@ -185,13 +186,13 @@ public class E_commerce {
 				}
 				System.out.println("O total a ser pago é R$" + (somaTotal + imposto));
 				System.out.println("O valor total em impostos é R$ " + imposto);
-				if (opcao1 == '1') {
+				if (opcaoFormaDePagamento == '1') {
 					System.out.println("Pagamento a vista");
-				} else if (opcao1 == '2') {
+				} else if (opcaoFormaDePagamento == '2') {
 					System.out.println("Pagamento a vista no cartão de crédito");
-				} else if (opcao1 == '3') {
+				} else if (opcaoFormaDePagamento == '3') {
 					System.out.println("Pagamento em 2x no cartão de crédito ");
-				} else if (opcao1 == '4') {
+				} else if (opcaoFormaDePagamento == '4') {
 					System.out.println("Pagamento em 3x no cartão de crédito ");
 				}
 
