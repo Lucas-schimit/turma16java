@@ -31,6 +31,7 @@ public class MainLista2 {
 	    
 	    System.out.println(Emp1.calcularSalario());
 	    
+	    
 	}
 	
 
