@@ -1,15 +1,27 @@
 package DesafioEd;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class MainDesafio {
 
 	public static void main(String[] args) {
 		
-		Terceiro Ter1 = new Terceiro("lucas", 20);
+		char terceiro; 
+		Scanner ler = new Scanner(System.in);
 		
-		double teste = Ter1.Salario(22, 50, 10);
-		double teste1 = Ter1.Salario(22, 20);
-		System.out.println(teste);
-		System.out.println(teste1);
+		List<Empregado> lista = new ArrayList<>();
+		
+		lista.add(new Terceiro("Lucas",23));
+		
+		System.out.println("Você é tercerizado S/N");
+		terceiro = ler.next().toUpperCase().charAt(0);
+		
+		if (terceiro == 'S') {
+			
+			
+		}
 
 	}
 
