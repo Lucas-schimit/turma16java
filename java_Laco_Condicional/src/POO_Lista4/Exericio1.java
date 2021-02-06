@@ -27,7 +27,7 @@ public class Exericio1 {
 		char opcao = 'S'; 
 		
 		do {
-		System.out.println("Estoque de produtos de Restaurante");
+		System.out.println("Estoque de produtos de Restaurante");	
 		System.out.println("Informe o nome do produto");
 		nome = ler.nextLine();
 		System.out.println("Informe o id do produto");
@@ -67,7 +67,7 @@ public class Exericio1 {
 			opcao = ler.nextLine().toUpperCase().charAt(0);
 			ler.nextLine();
 		}
-				
+			
 		ler.nextLine();
 		
 		System.out.println("Segue o resultado da sua consulta!!!");
