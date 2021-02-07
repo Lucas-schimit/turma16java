@@ -4,8 +4,22 @@ public class Estoque {
 
 	
 	private String descricao;
-	private double quantidade;
+	private double quantidade;	
 	
+	Produto po = new Produto();
+	
+	public double BaixaProduto(double debito) {
+		if(this.quantidade<=0) {
+			this.quantidade = quantidade; 
+		}else {
+			quantidade = (quantidade - debito);	
+		}
+		return quantidade;
+	}
+	
+	public Estoque() {
+		
+	}
 	
 	public Estoque(String descricao, double quantidade) {
 		super();

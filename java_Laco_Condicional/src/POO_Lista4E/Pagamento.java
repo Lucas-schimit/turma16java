@@ -1,15 +1,23 @@
 package POO_Lista4E;
 
+import java.util.*;
+
 public class Pagamento {
+	
+	Scanner ler = new Scanner(System.in);
 
 	private double valorTotal; 
 	private double imposto = 0.09;
 	
+	Estoque est = new Estoque();
+	
+
 	
 	public double PagamentoAvista(double valorTotal) {
 		this.valorTotal = valorTotal; 
 		double desconto =(valorTotal * 0.1);
-		return (valorTotal - desconto);
+		 valorTotal = (valorTotal - desconto);
+		 return valorTotal; 
 	}
 	
 	public double PagamentoCartao1(double valorTotal) {
@@ -61,8 +69,8 @@ public class Pagamento {
 		this.imposto = imposto;
 	}
 	
-	
-	
-	
-	
+	public Pagamento() {
+		
+	}
+
 }

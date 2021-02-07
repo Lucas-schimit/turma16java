@@ -11,6 +11,8 @@ public class Hasp {
 		HashMap<Integer, Estoque> estoque = new HashMap<Integer,Estoque>();
 		
 		
+		System.out.println("");
+		
 		estoque.put(1,new Estoque("Bolacha",5));
 		
 		hash_map.put(10, "Teste1");
