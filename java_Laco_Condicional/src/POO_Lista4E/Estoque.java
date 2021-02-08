@@ -8,8 +8,9 @@ public class Estoque {
 	
 	Produto po = new Produto();
 	
+
 	public double BaixaProduto(double debito) {
-		if(this.quantidade<=0) {
+		if(this.quantidade<=0 && this.quantidade>=10) {
 			this.quantidade = quantidade; 
 		}else {
 			quantidade = (quantidade - debito);	

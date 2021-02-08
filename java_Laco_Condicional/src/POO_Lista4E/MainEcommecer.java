@@ -16,12 +16,19 @@ public class MainEcommecer {
 		int idprodutoSelecionado =0;
 		double valorTotal = 0.00;
 		double recebeValor = 0.00;
+		int x=0;
+		double valorFormaPagamento = 0.00;
+		
+		List<Extrato>  listaDebito = new ArrayList<Extrato>();
+		
 		
 		System.out.println("Loja Boa");
 		System.out.println("Aqui reamente a loja é Boa!!!");
 		
 		HashMap<Integer, Produto> prod = new HashMap<Integer, Produto>(); 
 		HashMap<Integer, Estoque> Est = new HashMap<Integer, Estoque>(); 
+		HashMap<Integer, Extrato> Ext = new HashMap<Integer, Extrato>(); 
+		StringBuilder debito = new StringBuilder();
 		
 
 		prod.put(1, new Produto("FinalFantasy",1,30.00));
@@ -68,10 +75,12 @@ public class MainEcommecer {
 			
 		}else{
 		System.out.println("Informe a quantidade do produto na qual deseja comprar: ");
-		double quantidade = ler.nextDouble(); 
+		double quantidade = ler.nextDouble();
+		//if (quantidade<=0 && quantidade>=10) {System.out.println(" Não é permitido selecionar maior ou menor"
+			//	+ "do que o estoque");}
 		double quantidadeAtual = Est.get(idproduto).BaixaProduto(quantidade);
 		recebeValor +=  (quantidade* prod.get(idproduto).getValor());
-		//valorTotal = ca.valorTotal(recebeValor);
+	    debito.append(Est.get(idproduto).getDescricao()+"\t\t"+quantidade+"\n");
 		ler.nextLine();
 		System.out.println("Deseja comprar algum produto da loja novamente : S-sim/ N - não ");
 		opcao = ler.nextLine().toUpperCase().charAt(0);
@@ -90,11 +99,15 @@ public class MainEcommecer {
 		
 		if(opcaoPagamento==1) {
 			
-		System.out.println("O Valor total é de "+ recebeValor+" você teve o desconto de 10%: "+pa.PagamentoAvista(recebeValor));
+			valorFormaPagamento = pa.PagamentoAvista(recebeValor);
+			
+			System.out.println("O Valor total é de "+ recebeValor+" você teve o desconto de 10%: "+valorFormaPagamento);
 		
 		opcaoPagamento1 =2;
 		
 		}else if(opcaoPagamento==2) {
+			
+			valorFormaPagamento=pa.PagamentoCartao1(recebeValor);
 			
 			System.out.println("O Valor total é de "+ recebeValor+" você pagara o valor normal da compra: "+pa.PagamentoCartao1(recebeValor));
 			
@@ -102,12 +115,14 @@ public class MainEcommecer {
 			
 		}else if(opcaoPagamento==3) {
 			
+			valorFormaPagamento = (pa.PagamentoCartao2(recebeValor) *2);
 			System.out.println("O Valor total é de "+ recebeValor+" você pagara juros de 10% no valor total, e a Primeira parcela é de: "+pa.PagamentoCartao2(recebeValor));
 			System.out.println("O Valor total é de "+ recebeValor+" você pagara juros de 10% no valor total, e a Segunda parcela é de: "+pa.PagamentoCartao2(recebeValor));
 			opcaoPagamento1 =2;
 			
 		}else if(opcaoPagamento==4) {
 			
+			valorFormaPagamento = (pa.PagamentoCartao3(recebeValor)*3);
 			System.out.println("O Valor total é de  "+ recebeValor+" você pagara juros de 15% no valor total, e a Primeira parcela é de: "+pa.PagamentoCartao3(recebeValor));
 			System.out.println("O Valor total é de "+ recebeValor+" você pagara juros de 15% no valor total, e a Segunda parcela é de: "+pa.PagamentoCartao3(recebeValor));
 			System.out.println("O Valor total é de "+ recebeValor+" você pagara juros de 15% no valor total, e a Terceira parcela é de: "+pa.PagamentoCartao3(recebeValor));
@@ -122,10 +137,17 @@ public class MainEcommecer {
 		}
 	}while(opcaoPagamento1==1);
 		
-		
-		//ext.ImprimeNomeDaLoja();
-		//ext.CabeçalhoLoja();
-		
+   
+			linha(60);
+			System.out.println("[COD PRODUTO]"+"\t\t"+"[QTDE]"+"\t\t"+"[VALOR FINAL]");
+			linha(60);
+			
+			
+			
+			System.out.println(debito.toString()+"\t\t\t\t\t\t"+valorFormaPagamento);
+			
+			
+			
     System.out.println("Obrigado por utilizar nossa loja");
     
 	}

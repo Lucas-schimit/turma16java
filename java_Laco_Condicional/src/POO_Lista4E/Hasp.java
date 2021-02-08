@@ -28,6 +28,7 @@ public class Hasp {
 		 System.out.println("Returned value is: "+ returned_value);
 		 
 		 System.out.println("New map is: "+ hash_map);
+		 System.out.println("New map is: "+ estoque.get(1).getDescricao());
 	}
 
 }

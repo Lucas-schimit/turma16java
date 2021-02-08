@@ -17,6 +17,8 @@ public class Produto {
 		this.idproduto = idproduto;
 		this.valor = valor;
 	}
+	
+
 	public String getDescricao() {
 		return descricao;
 	}
