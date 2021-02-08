@@ -11,7 +11,7 @@ public class Pagamento {
 	
 	Estoque est = new Estoque();
 	
-
+    
 	
 	public double PagamentoAvista(double valorTotal) {
 		this.valorTotal = valorTotal; 

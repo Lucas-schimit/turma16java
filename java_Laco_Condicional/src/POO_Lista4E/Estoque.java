@@ -18,6 +18,20 @@ public class Estoque {
 		return quantidade;
 	}
 	
+	public double CreditoProduto(double credito) {
+		if(this.quantidade<=0 && this.quantidade>=10) {
+			this.quantidade = quantidade; 
+		}else {
+			quantidade = (quantidade + credito);	
+    	}
+		return quantidade;
+	}
+	
+	public double MostrarQuantidade() {
+		 double mostrar = (10-quantidade);
+		 return mostrar;
+	}
+	
 	public Estoque() {
 		
 	}

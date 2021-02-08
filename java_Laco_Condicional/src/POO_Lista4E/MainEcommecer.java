@@ -2,6 +2,7 @@ package POO_Lista4E;
 
 import java.util.*;
 
+
 public class MainEcommecer {
 
 	public static void main(String[] args) {
@@ -9,6 +10,7 @@ public class MainEcommecer {
 		Extrato ext = new Extrato();
 		Carinho ca = new Carinho();
 		Pagamento pa = new Pagamento();
+		Pessoas pe = new Pessoas();
 		
 		Scanner ler = new Scanner(System.in);
 		char opcao = 'S';
@@ -18,16 +20,18 @@ public class MainEcommecer {
 		double recebeValor = 0.00;
 		int x=0;
 		double valorFormaPagamento = 0.00;
+		double valorComImposto = 0.00;
 		
 		List<Extrato>  listaDebito = new ArrayList<Extrato>();
 		
 		
 		System.out.println("Loja Boa");
-		System.out.println("Aqui reamente a loja é Boa!!!");
+		System.out.println("Aqui realmente a loja é Boa!!!");
 		
 		HashMap<Integer, Produto> prod = new HashMap<Integer, Produto>(); 
 		HashMap<Integer, Estoque> Est = new HashMap<Integer, Estoque>(); 
 		HashMap<Integer, Extrato> Ext = new HashMap<Integer, Extrato>(); 
+		List<Pessoas>  pessoasC = new ArrayList<Pessoas>();
 		StringBuilder debito = new StringBuilder();
 		
 
@@ -52,18 +56,64 @@ public class MainEcommecer {
 		Est.put(8, new Estoque("GTAV",10));
 		Est.put(9, new Estoque("Mortal Kombat",10));
 		Est.put(10, new Estoque("Free Fire",10));
+
+		System.out.println(
+				"**************************************************************************************************************************************************");
+		
+		System.out.print("─▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄\r\n"
+		                    + "█░░░█░░░░░░░░░░▄▄░██░█\r\n"
+		                    + "█░▀▀█▀▀░▄▀░▄▀░░▀▀░▄▄░█\r\n"
+		                    + "█░░░▀░░░▄▄▄▄▄░░██░▀▀░█\r\n"
+		                    + "─▀▄▄▄▄▄▀─────▀▄▄▄▄▄▄▀\r\n"
+		                    + "");
+
+		//usar uma interface
+		 System.out.println("+-+   +-+ +-+ +-+   +-+ +-+ +-+ +-+ +-+\r\n"
+		 		+ "   |É|   |b| |o| |a|   |m| |e| |s| |m| |o|\r\n"
+		 		+ "   +-+   +-+ +-+ +-+   +-+ +-+ +-+ +-+ +-+");
+				
+        System.out.println("CODIGO \t   ESTOQUE\t  PREÇO\t\t    NOME DO PRODUTO");
+        for(int i = 1; i<=10; i++)
+        {
+            System.out.println(" ▌" + prod.get(i).getIdproduto() + "\t  ▌" +"\t" + Est.get(i).getQuantidade() + " ▌" + "\t\t" + "R$" +prod.get(i).getValor()+  " ▌"+"\t\t" + Est.get(i).getDescricao() );
+        }
+		
+		//do {
+
+           // if(decisao == 1)
+          //  {
+            System.out.println("Escreva seu nome: ");
+            ler.nextLine();
+            String nome = ler.nextLine();
+            System.out.println("Escreva seu genero:  ");
+            char genero = ler.next().toUpperCase().charAt(0);
+                pe.setSexo(genero);
+                pe.setNomePessoa(nome);
+                ler.nextLine();
+           System.out.println(pe.tratamentoGenero(genero)+ " "+ pe.getNomePessoa()+ " cadastro concluido..."); 
+           /* }
+            else if(decisao ==2) {
+                   //Carrinho();
+          
+        		
+            }else if(decisao == 3) {
+                System.exit(0);
+            }
+            System.out.println("Deseja ir ao menu inicial: ");
+            opcao = ler.next().toUpperCase().charAt(0);
+            }while(opcao == 'S'); */
 		
 		
+	//	System.out.println("[COD PRODUTO]"+"\t"+"[NOME DO PRODUTO]"+"\t\t\t"+"[ESTOQUE]"+"\t\t\t"+"[VALOR UNITARIO]");
 		
-		System.out.println("[COD PRODUTO]"+"\t"+"[NOME DO PRODUTO]"+"\t\t\t"+"[ESTOQUE]"+"\t\t\t"+"[VALOR UNITARIO]");
-		
-		for(int i = 1; i<=10; i++) {
+		/*for(int i = 1; i<=10; i++) {
 	
 		System.out.print(prod.get(i).getIdproduto()+"\t\t"+Est.get(i).getDescricao()+"\t\t\t\t\t"+Est.get(i).getQuantidade()+"\t\t\t\t"+prod.get(i).getValor()+"\n");
 		
-	     }
+	     } */
+		 
 		System.out.println("Deseja comprar algum produto da loja: S-sim/ N - não ");
-		opcao = ler.nextLine().toUpperCase().charAt(0);
+      	opcao = ler.nextLine().toUpperCase().charAt(0);
 		
 		while(opcao=='S'){
 
@@ -76,17 +126,28 @@ public class MainEcommecer {
 		}else{
 		System.out.println("Informe a quantidade do produto na qual deseja comprar: ");
 		double quantidade = ler.nextDouble();
+		System.out.println("Informe a quantidade do produto na qual deseja devolver: ");
+		double quantidade1 = ler.nextDouble();
 		//if (quantidade<=0 && quantidade>=10) {System.out.println(" Não é permitido selecionar maior ou menor"
 			//	+ "do que o estoque");}
 		double quantidadeAtual = Est.get(idproduto).BaixaProduto(quantidade);
+		double quantidadeCreditra = Est.get(idproduto).CreditoProduto(quantidade1);
 		recebeValor +=  (quantidade* prod.get(idproduto).getValor());
-	    debito.append(Est.get(idproduto).getDescricao()+"\t\t"+quantidade+"\n");
+	    debito.append(Est.get(idproduto).getDescricao()+"\t\t"+Est.get(idproduto).MostrarQuantidade()+"\n");
 		ler.nextLine();
 		System.out.println("Deseja comprar algum produto da loja novamente : S-sim/ N - não ");
 		opcao = ler.nextLine().toUpperCase().charAt(0);
 		idprodutoSelecionado = idproduto; 
+		System.out.println("Deseja visualizar os produtos : S-sim/ N - não ");
+		char opcaoVisualizar = ler.nextLine().toUpperCase().charAt(0);
+		if(opcaoVisualizar=='S') {
+			
+			System.out.println(debito.toString());
 		}
 		}
+		}
+		
+		
 		
 	   // System.out.println(recebeValor);
    do {
@@ -137,18 +198,38 @@ public class MainEcommecer {
 		}
 	}while(opcaoPagamento1==1);
 		
-   
+   			valorComImposto = (recebeValor*0.09);
+   			System.out.println();
 			linha(60);
+			System.out.println("*****************Cupom Fiscal **********************");
 			System.out.println("[COD PRODUTO]"+"\t\t"+"[QTDE]"+"\t\t"+"[VALOR FINAL]");
+			System.out.println("Com imposto de 9% " + valorComImposto);
+			System.out.println("CNPJ: 171.1777.171");
 			linha(60);
-			
 			
 			
 			System.out.println(debito.toString()+"\t\t\t\t\t\t"+valorFormaPagamento);
 			
 			
 			
-    System.out.println("Obrigado por utilizar nossa loja");
+			System.out.println("__██████████████\r\n"
+	                + "-__██▓▓▓▓▓▓▓▓▓ M ▓████\r\n"
+	                + "-██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██\r\n"
+	                + "-██████░░░░██░░██████\r\n"
+	                + "██░░░░████░░██░░░░░░░░██\r\n"
+	                + "██░░░░████░░░░██░░░░░░██\r\n"
+	                + "-████░░░░░░██████████\r\n"
+	                + "-██░░░░░░░░░░░░░██\r\n"
+	                + "___██░░░░░░░░░██\r\n"
+	                + "-__██░░░░░░██\r\n"
+	                + "-_██▓▓████▓▓▓█      ╔═.✵.══════════╗ \r\n"
+	                + "-██▓▓▓▓▓▓████▓▓█     VOLTE SEMPRE  \r\n"
+	                + "██▓▓▓▓▓▓███░░███░   ╚══════════.✵.═╝ \r\n"
+	                + "-██░░░░░░███████\r\n"
+	                + "-██░░░░███████\r\n"
+	                + "-__██████████\r\n"
+	                + "-██▓▓▓▓▓▓▓▓▓██\r\n"
+	                + "-█████████████");
     
 	}
 	public static void linha(int tamanho) {
