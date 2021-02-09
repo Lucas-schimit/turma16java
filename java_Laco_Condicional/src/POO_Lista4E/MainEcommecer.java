@@ -79,12 +79,11 @@ public class MainEcommecer {
         }
 		
 		//do {
-
            // if(decisao == 1)
           //  {
             System.out.println("Escreva seu nome: ");
-            ler.nextLine();
             String nome = ler.nextLine();
+            ler.nextLine();
             System.out.println("Escreva seu genero:  ");
             char genero = ler.next().toUpperCase().charAt(0);
                 pe.setSexo(genero);
@@ -126,7 +125,12 @@ public class MainEcommecer {
 		}else{
 		System.out.println("Informe a quantidade do produto na qual deseja comprar: ");
 		double quantidade = ler.nextDouble();
-		System.out.println("Informe a quantidade do produto na qual deseja devolver: ");
+		while (quantidade>10) {
+			System.out.println("A quantidade informado não é aceita!!");
+			System.out.println("Informe a quantidade do produto na qual deseja comprar: ");
+			quantidade = ler.nextDouble();
+		}
+		System.out.println("Informe a quantidade do produto na qual deseja devolver, caso ao contraio digite 0: ");
 		double quantidade1 = ler.nextDouble();
 		//if (quantidade<=0 && quantidade>=10) {System.out.println(" Não é permitido selecionar maior ou menor"
 			//	+ "do que o estoque");}
@@ -141,7 +145,8 @@ public class MainEcommecer {
 		System.out.println("Deseja visualizar os produtos : S-sim/ N - não ");
 		char opcaoVisualizar = ler.nextLine().toUpperCase().charAt(0);
 		if(opcaoVisualizar=='S') {
-			
+			System.out.println("Ola "+ pe.getNomePessoa()+ " esse é seu carrinho: ");
+			System.out.println("[DESCRICAO]"+"\t\t"+"[QTDE]");
 			System.out.println(debito.toString());
 		}
 		}
