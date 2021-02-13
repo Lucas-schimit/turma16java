@@ -1,5 +1,5 @@
 package E_commerce;
 
-public class Estoque extends Produto{
+public class Estoque extends Produto1{
 
 }
